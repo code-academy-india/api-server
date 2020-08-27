@@ -42,8 +42,13 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
   	}
  }
  ```
+
+- Request
+  curl -X POST -H "Content-Type:application/json" -H "X-Custom-Id: 16cfbefd-28b3-4428-8221-95821cae8e77" -d @subscription.json https://codeacademy.co.in/api/v1/doc
+ 
 - Response
-{"cs":201,"data":{"_id":{"ro":"3124Y"}}}
+  {"cs":201,"data":{"_id":{"ro":"3124Y"}}}
+
 
 # READ Full Document
   - Use API Key to add any json document. 
@@ -59,8 +64,11 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
     "proj" : [ "null"]
  }
 ```
+- Request
+  curl -X POST -H "Content-Type:application/json" -H "X-Custom-Id: 16cfbefd-28b3-4428-8221-95821cae8e77" -d @query.json https://codeacademy.co.in/api/v1/filter?query=one
+
 - Response
-{"cs":200,"data":{"_id":{"ro":"3124Y"},"ct":25,"cs":10,"cd":{"email":"john.doe.1@gmail.com","options":["News","Promos"]}}}
+  {"cs":200,"data":{"_id":{"ro":"3124Y"},"ct":25,"cs":10,"cd":{"email":"john.doe.1@gmail.com","options":["News","Promos"]}}}
 
 # READ Partial Document
   - Use API Key to add any json document. 
@@ -76,8 +84,11 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
     "proj" : [ "cd"]
  }
 ```
+- Request
+  curl -X POST -H "Content-Type:application/json" -H "X-Custom-Id: 16cfbefd-28b3-4428-8221-95821cae8e77" -d @query.json https://codeacademy.co.in/api/v1/filter?query=one
+
 - Response
-{"cs":200,"data":{"_id":{"ro":"3124Y"},"cd":{"email":"john.doe.1@gmail.com","options":["News","Promos"]}}}
+  {"cs":200,"data":{"_id":{"ro":"3124Y"},"cd":{"email":"john.doe.1@gmail.com","options":["News","Promos"]}}}
 
 ### Development
 
@@ -86,6 +97,3 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
 ### Todos
  - Update document
  - Patch document
-
-
-

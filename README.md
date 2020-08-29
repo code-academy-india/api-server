@@ -50,8 +50,8 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
   {"cs":201,"data":{"_id":{"ro":"3124Y"}}}
 
 
-# READ Full Document
-  - Use API Key to add any json document. 
+# READ Single Document
+  - Use API Key to read any json document. 
   - The Document must follow Code Academy QueryFilter class.
   - Use this sample for current demo. Assume you are reading document with id 3124Y
 ```sh
@@ -70,8 +70,8 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
 - Response
   {"cs":200,"data":{"_id":{"ro":"3124Y"},"ct":25,"cs":10,"cd":{"email":"john.doe.1@gmail.com","options":["News","Promos"]}}}
 
-# READ Partial Document
-  - Use API Key to add any json document. 
+# READ Single Partial Document
+  - Use API Key to read any json document. 
   - The Document must follow Code Academy QueryFilter class.
   - Use this sample for current demo. Assume you are reading document with id 3124Y
 ```sh
@@ -90,6 +90,51 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
 - Response
   {"cs":200,"data":{"_id":{"ro":"3124Y"},"cd":{"email":"john.doe.1@gmail.com","options":["News","Promos"]}}}
 
+# READ Many Documents
+  - Use API Key to read json document. 
+  - The Document must follow Code Academy QueryFilter class.
+  - Use this sample for current demo. Read all Active(10) Subscriptions(25)
+
+```sh
+{
+		 "pn" : 1,
+		 "ps" : 20,
+		 "andMap" : {
+			 "ct" : 25,
+			 "cs" : 10
+		 },
+	    "proj" : ["cd"]
+}
+```
+- Request
+  curl -X POST -H "Content-Type:application/json" -H "X-Custom-Id: 16cfbefd-28b3-4428-8221-95821cae8e77" -d @query.json https://codeacademy.co.in/api/v1/filter?query=many
+
+- Response
+  Returns 1st 20 Documents with 'cd' field for Active Subscriptions.
+  
+# READ Many Documents from Different document types
+  - Use API Key to read json document. 
+  - The Document must follow Code Academy QueryFilter class.
+  - Use this sample for current demo. Read all Active(10) Subscriptions(25) and Comments(18)
+
+```sh
+{
+		 "pn" : 1,
+		 "ps" : 50,
+		 "andMap" : {
+			 "ct" : [18,25],
+			 "cs" : 10
+		 },
+	    "proj" : ["ct", "cd"]
+	}
+```
+- Request
+  curl -X POST -H "Content-Type:application/json" -H "X-Custom-Id: 16cfbefd-28b3-4428-8221-95821cae8e77" -d @query.json https://codeacademy.co.in/api/v1/filter?query=many
+
+- Response
+  Returns 1st 50 Documents with 'ct' and 'cd' fields for Active Subscriptions and Comments.
+  
+  
 ### Development
 
     Issue or comment write to manager@codeacademy.co.in
@@ -97,3 +142,4 @@ api-server is  a cloud-enabled, mobile-ready API Server with JSON Document store
 ### Todos
  - Update document
  - Patch document
+ - Sort documents
